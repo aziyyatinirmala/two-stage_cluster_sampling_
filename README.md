@@ -15,19 +15,18 @@ Repository ini menyajikan dokumentasi penelitian secara sistematis, mulai dari p
 
 ```text
 Estimasi-Rata-Rata-Pemanfaatan-Media-Sosial/
-├── README.md
-├── Executive_Summary.pdf
-├── data/
-│   ├── Data_Penelitian.xlsx
-│   └── Randomisasi_Two_Stage_Cluster_Sampling.xlsx
-├── script/
-│   └── Analisis_Two_Stage_Cluster_Sampling.R
-└── output_gambar/
-    ├── Histogram_Skor_Total.png
-    ├── Boxplot_Skor_Total.png
-    ├── Bar_Angkatan.png
-    ├── Bar_Jenis_Kelamin.png
-    └── Heatmap_Korelasi_Item.png
+two-stage-cluster-sampling/
+│── README.md
+│── Two-Stage Cluster Sampling.R
+│── Data Responden Utama.xlsx
+│── Data Luar Responden.xlsx
+│
+├── output_gambar/
+│   ├── Histogram_Skor_Total.png
+│   ├── Boxplot_Skor_Total.png
+│   ├── Bar_Angkatan.png
+│   ├── Bar_Jenis_Kelamin.png
+│   └── Heatmap_Korelasi_Item.png
 ```
 
 ---
