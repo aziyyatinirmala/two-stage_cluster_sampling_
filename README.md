@@ -5,10 +5,21 @@
 # 📊 Estimasi Rata-Rata Pemanfaatan Media Sosial sebagai Sumber Informasi Akademik Mahasiswa Program Studi Statistika Universitas Mataram Menggunakan Two-Stage Cluster Sampling
 
 ![R](https://img.shields.io/badge/R-276DC3?style=flat-square&logo=r&logoColor=white)
-![Survey](https://img.shields.io/badge/Survey%20Sampling-Two--Stage%20Sampling-2E8B57?style=flat-square)
+![Data](https://img.shields.io/badge/Data-Questionnaire-blueviolet?style=flat-square)
+![Method](https://img.shields.io/badge/Method-Two--Stage%20Cluster%20Sampling-success?style=flat-square)
 ![Statistics](https://img.shields.io/badge/Statistics-Survey%20Estimation-1E90FF?style=flat-square)
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=flat-square)
 
+**📚 Final Project | Department of Statistics | Universitas Mataram**
+
+**Author:** Aziyyati Nirmala
+
+**Programming Language:** R
+
+**Sampling Method:** Two-Stage Cluster Sampling
+
+**Population:** Statistics Students, Universitas Mataram
+
+</div>
 ## Deskripsi Proyek
 
 Repository ini mendokumentasikan seluruh proses penelitian mengenai **estimasi rata-rata pemanfaatan media sosial sebagai sumber informasi akademik** pada mahasiswa Program Studi Statistika Universitas Mataram menggunakan metode **Two-Stage Cluster Sampling**. Penelitian ini bertujuan untuk memperoleh estimasi rata-rata pemanfaatan media sosial berdasarkan data hasil survei yang dikumpulkan melalui penyebaran kuesioner kepada responden terpilih.
