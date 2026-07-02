@@ -173,6 +173,9 @@ Pengolahan Data
 Menyiapkan Variabel Penelitian
       │
       ▼
+Data Cleaning
+      │
+      ▼
 Uji Validitas
       │
       ▼
@@ -191,49 +194,270 @@ Pembobotan Two-Stage Cluster Sampling
 Analisis Survei
       │
       ▼
-Estimasi Rata-rata, Standard Error, dan Confidence Interval
+Estimasi Rata-rata, Standard Error (SE),
+Confidence Interval (CI), Design Effect (DEFF),
+dan Relative Standard Error (RSE)
 ```
 
 ---
 
 ## Langkah Analisis
 
-### 1. Import Data
+Tahapan analisis dilakukan menggunakan bahasa pemrograman **R**. Setiap tahapan dijelaskan secara ringkas pada bagian berikut. **Script lengkap** dapat dilihat pada file **`script/Analisis_Two_Stage_Cluster_Sampling.R`** yang tersedia pada repository ini.
 
-...
+---
 
-### 2. Pengolahan Data
+## 1. Import Data
 
-...
+### Tujuan
 
-### 3. Menyiapkan Variabel Penelitian
+Mengimpor data hasil kuesioner ke dalam R dan memeriksa struktur awal data sebelum dilakukan analisis.
 
-...
+### Syntax
 
-### 4. Uji Validitas
+```r
+library(readxl)
 
-...
+data <- read_excel("Data Responden Utama.xlsx")
 
-### 5. Uji Reliabilitas
+str(data)
 
-...
+head(data)
+```
 
-### 6. Analisis Statistik Deskriptif
+### Penjelasan
 
-...
+Data diimpor menggunakan package **readxl**, kemudian dilakukan pemeriksaan struktur data dan enam observasi pertama untuk memastikan data berhasil dibaca dengan benar.
 
-### 7. Visualisasi Data
+> **Catatan:** Script lengkap proses import data dapat dilihat pada folder **`script/Analisis_Two_Stage_Cluster_Sampling.R`**.
 
-...
+---
 
-### 8. Pembobotan Two-Stage Cluster Sampling
+## 2. Pengolahan Data
 
-...
+### Tujuan
 
-### 9. Analisis Survei
+Menyiapkan data agar seluruh item pertanyaan dapat dianalisis sebagai data numerik.
 
-...
+### Syntax
 
+```r
+item <- data[,6:17]
+
+item <- data.frame(
+  lapply(item, function(x)
+    as.numeric(as.character(x)))
+)
+
+data[,6:17] <- item
+```
+
+### Penjelasan
+
+Tahap ini memilih 12 butir pertanyaan penelitian kemudian mengubah seluruh jawaban menjadi data numerik sehingga dapat digunakan pada proses analisis statistik.
+
+> **Catatan:** Script lengkap tersedia pada **`script/Analisis_Two_Stage_Cluster_Sampling.R`**.
+
+---
+
+## 3. Menyiapkan Variabel Penelitian
+
+### Tujuan
+
+Membentuk variabel yang digunakan pada proses analisis.
+
+### Syntax
+
+```r
+data$Skor_Total <- rowSums(item)
+
+data$Kelas <- as.factor(data$Kelas)
+
+data$Angkatan <- as.factor(data$Angkatan)
+```
+
+### Penjelasan
+
+Pada tahap ini dihitung skor total setiap responden serta mengubah variabel kategorik menjadi faktor agar sesuai dengan kebutuhan analisis survei.
+
+> **Catatan:** Script lengkap tersedia pada **`script/Analisis_Two_Stage_Cluster_Sampling.R`**.
+
+---
+
+## 4. Data Cleaning
+
+### Tujuan
+
+Memastikan kualitas data sebelum dilakukan analisis statistik.
+
+### Syntax
+
+```r
+jumlah_responden <- nrow(data)
+
+missing_value <- sum(is.na(data))
+
+duplikat <- sum(duplicated(data))
+
+Q1 <- quantile(data$Skor_Total,0.25)
+Q3 <- quantile(data$Skor_Total,0.75)
+```
+
+### Penjelasan
+
+Pemeriksaan dilakukan terhadap jumlah responden, missing value, data duplikat, dan outlier menggunakan metode **Interquartile Range (IQR)** sehingga data yang dianalisis memenuhi kualitas yang baik.
+
+> **Catatan:** Script lengkap tersedia pada **`script/Analisis_Two_Stage_Cluster_Sampling.R`**.
+
+---
+
+## 5. Uji Validitas
+
+### Tujuan
+
+Mengetahui kemampuan setiap butir pertanyaan dalam mengukur variabel penelitian.
+
+### Syntax
+
+```r
+for(i in 1:ncol(item)){
+
+  skor_total_koreksi <- rowSums(item[,-i])
+
+  hasil <- cor.test(item[,i], skor_total_koreksi)
+
+}
+```
+
+### Penjelasan
+
+Validitas setiap item diuji menggunakan korelasi Pearson antara skor item dengan skor total terkoreksi (Corrected Item-Total Correlation).
+
+> **Catatan:** Script lengkap tersedia pada **`script/Analisis_Two_Stage_Cluster_Sampling.R`**.
+
+---
+
+## 6. Uji Reliabilitas
+
+### Tujuan
+
+Mengukur tingkat konsistensi instrumen penelitian.
+
+### Syntax
+
+```r
+library(psych)
+
+hasil_alpha <- alpha(item)
+```
+
+### Penjelasan
+
+Uji reliabilitas dilakukan menggunakan koefisien **Cronbach's Alpha**. Instrumen dinyatakan reliabel apabila nilai Alpha ≥ 0,70.
+
+> **Catatan:** Script lengkap tersedia pada **`script/Analisis_Two_Stage_Cluster_Sampling.R`**.
+
+---
+
+## 7. Analisis Statistik Deskriptif
+
+### Tujuan
+
+Memberikan gambaran umum mengenai karakteristik data penelitian.
+
+### Syntax
+
+```r
+summary(data$Skor_Total)
+
+mean(data$Skor_Total)
+
+sd(data$Skor_Total)
+```
+
+### Penjelasan
+
+Statistik deskriptif digunakan untuk melihat ukuran pemusatan dan penyebaran data sebelum dilakukan analisis survei.
+
+> **Catatan:** Script lengkap tersedia pada **`script/Analisis_Two_Stage_Cluster_Sampling.R`**.
+
+---
+
+## 8. Visualisasi Data
+
+### Tujuan
+
+Menyajikan distribusi data dan hubungan antar item secara visual.
+
+### Syntax
+
+```r
+hist(data$Skor_Total)
+
+boxplot(data$Skor_Total)
+
+ggcorrplot(korelasi)
+```
+
+### Penjelasan
+
+Visualisasi dilakukan menggunakan histogram, boxplot, bar chart, dan heatmap korelasi sehingga karakteristik data lebih mudah dipahami.
+
+> **Catatan:** Script lengkap tersedia pada **`script/Analisis_Two_Stage_Cluster_Sampling.R`**.
+
+---
+
+## 9. Pembobotan Two-Stage Cluster Sampling
+
+### Tujuan
+
+Menghitung bobot setiap responden berdasarkan peluang pemilihannya.
+
+### Syntax
+
+```r
+p1 <- m/M
+
+p2 <- n/N
+
+w_akhir <- (1/(p1*p2))
+```
+
+### Penjelasan
+
+Bobot dihitung berdasarkan peluang pemilihan pada tahap pertama dan tahap kedua sehingga setiap responden dapat mewakili unit dalam populasi.
+
+> **Catatan:** Script lengkap tersedia pada **`script/Analisis_Two_Stage_Cluster_Sampling.R`**.
+
+---
+
+## 10. Analisis Survei
+
+### Tujuan
+
+Mengestimasi rata-rata pemanfaatan media sosial sebagai sumber informasi akademik beserta ukuran ketelitiannya.
+
+### Syntax
+
+```r
+desain <- svydesign(
+  ids = ~Cluster,
+  weights = ~bobot,
+  data = data
+)
+
+hasil <- svymean(~Skor_Total, desain)
+
+SE(hasil)
+
+confint(hasil)
+```
+
+### Penjelasan
+
+Analisis dilakukan menggunakan package **survey** untuk memperoleh estimasi rata-rata, Standard Error (SE), Confidence Interval (CI), Design Effect (DEFF), dan Relative Standard Error (RSE).
+
+> **Catatan:** Script lengkap tersedia pada **`script/Analisis_Two_Stage_Cluster_Sampling.R`**.
 ---
 
 ## Hasil dan Pembahasan
