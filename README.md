@@ -18,9 +18,9 @@ Estimasi-Rata-Rata-Pemanfaatan-Media-Sosial/
 two-stage-cluster-sampling/
 │── README.md
 │── Two-Stage Cluster Sampling.R
+│── Executive Summary.pdf
 │── Data Responden Utama.xlsx
 │── Data Luar Responden.xlsx
-│
 ├── output_gambar/
 │   ├── Histogram_Skor_Total.png
 │   ├── Boxplot_Skor_Total.png
