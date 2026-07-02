@@ -20,6 +20,7 @@
 **Population:** Statistics Students, Universitas Mataram
 
 </div>
+
 ## Deskripsi Proyek
 
 Repository ini mendokumentasikan seluruh proses penelitian mengenai **estimasi rata-rata pemanfaatan media sosial sebagai sumber informasi akademik** pada mahasiswa Program Studi Statistika Universitas Mataram menggunakan metode **Two-Stage Cluster Sampling**. Penelitian ini bertujuan untuk memperoleh estimasi rata-rata pemanfaatan media sosial berdasarkan data hasil survei yang dikumpulkan melalui penyebaran kuesioner kepada responden terpilih.
