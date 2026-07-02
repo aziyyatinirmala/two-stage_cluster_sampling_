@@ -1,5 +1,13 @@
 # Average Estimation of Social Media Utilization for Academic Information Using Two-Stage Cluster Sampling
+
+<div align="center">
+      
 # 📊 Estimasi Rata-Rata Pemanfaatan Media Sosial sebagai Sumber Informasi Akademik Mahasiswa Program Studi Statistika Universitas Mataram Menggunakan Two-Stage Cluster Sampling
+
+![R](https://img.shields.io/badge/R-276DC3?style=flat-square&logo=r&logoColor=white)
+![Survey](https://img.shields.io/badge/Survey%20Sampling-Two--Stage%20Sampling-2E8B57?style=flat-square)
+![Statistics](https://img.shields.io/badge/Statistics-Survey%20Estimation-1E90FF?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=flat-square)
 
 ## Deskripsi Proyek
 
