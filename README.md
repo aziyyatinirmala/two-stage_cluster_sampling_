@@ -1,4 +1,4 @@
-# two-stage_cluster_sampling
+# Average Estimation of Social Media Utilization for Academic Information Using Two-Stage Cluster Sampling
 # 📊 Estimasi Rata-Rata Pemanfaatan Media Sosial sebagai Sumber Informasi Akademik Mahasiswa Program Studi Statistika Universitas Mataram Menggunakan Two-Stage Cluster Sampling
 
 ## Deskripsi Proyek
