@@ -11,7 +11,7 @@
 
 **📚 Final Project | Department of Statistics | Universitas Mataram**
 
-**Author:** Aziyyati Nirmala
+**Author:** Aziyyati Nirmala Putri
 
 **Programming Language:** R
 
