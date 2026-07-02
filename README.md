@@ -23,10 +23,11 @@ Estimasi-Rata-Rata-Pemanfaatan-Media-Sosial/
 ├── script/
 │   └── Analisis_Two_Stage_Cluster_Sampling.R
 └── output_gambar/
-    ├── Histogram.png
-    ├── Boxplot.png
-    ├── Bar_Chart.png
-    └── Pie_Chart.png
+    ├── Histogram_Skor_Total.png
+    ├── Boxplot_Skor_Total.png
+    ├── Bar_Angkatan.png
+    ├── Bar_Jenis_Kelamin.png
+    └── Heatmap_Korelasi_Item.png
 ```
 
 ---
@@ -464,37 +465,219 @@ Analisis dilakukan menggunakan package **survey** untuk memperoleh estimasi rata
 
 ### 1. Hasil Import Data
 
-...
+Data hasil pengumpulan kuesioner berhasil diimpor ke dalam R menggunakan package **readxl**. Dataset yang digunakan terdiri atas **40 responden** dengan **17 variabel**, yaitu 5 variabel identitas responden dan 12 butir pertanyaan mengenai pemanfaatan media sosial sebagai sumber informasi akademik.
+
+#### Informasi Dataset
+
+| Komponen | Keterangan |
+|----------|------------|
+| Jumlah Responden | 40 |
+| Jumlah Variabel | 17 |
+| Tipe Data | `tibble` (`tbl_df`) |
+| Variabel Identitas | Timestamp, Nama Lengkap, Angkatan, Kelas, Jenis Kelamin |
+| Variabel Penelitian | 12 butir pertanyaan skala Likert (1–4) |
+
+#### Enam Data Pertama
+
+| No | Nama Lengkap | Angkatan | Kelas | Jenis Kelamin |
+|---:|--------------|:--------:|:-----:|:-------------:|
+| 1 | Yani Ofa Salika | 2024 | A | Perempuan |
+| 2 | Hurul Aini | 2024 | A | Perempuan |
+| 3 | Meylisa Azzahra | 2024 | A | Perempuan |
+| 4 | Nurlinda Suryani | 2024 | A | Perempuan |
+| 5 | Laula Faokana | 2024 | A | Perempuan |
+| 6 | Ni Putu Adelina Devani | 2024 | A | Perempuan |
+
+**Struktur Data**
+
+Struktur data digunakan untuk mengetahui tipe data dari setiap variabel yang terdapat dalam dataset penelitian sebelum dilakukan proses analisis.
+
+| Variabel | Tipe Data | Keterangan |
+|----------|-----------|------------|
+| Timestamp | POSIXct | Waktu pengisian kuesioner |
+| Nama Lengkap | character | Nama responden |
+| Angkatan | numeric | Tahun angkatan responden |
+| Kelas | character | Kelas responden |
+| Jenis Kelamin | character | Jenis kelamin responden |
+| Item 1–12 | numeric | Skor jawaban kuesioner menggunakan skala Likert 1–4 |
+
+**Interpretasi**
+
+Hasil import data menunjukkan bahwa dataset berhasil diimpor ke dalam R tanpa kendala. Dataset terdiri atas **40 responden** dan **17 variabel**, yang meliputi **1 variabel bertipe tanggal dan waktu (POSIXct)**, **3 variabel bertipe karakter (character)**, dan **13 variabel bertipe numerik (numeric)**. Variabel numerik terdiri atas satu variabel identitas, yaitu **Angkatan**, serta **12 butir pertanyaan** yang diukur menggunakan skala Likert 1–4. Seluruh variabel telah terbaca dengan baik sehingga dapat langsung digunakan dalam analisis statistik, seperti uji validitas, uji reliabilitas, analisis statistik deskriptif, pembobotan, dan analisis survei.
 
 ### 2. Hasil Pengolahan Data
 
-...
+Tahap pengolahan data dilakukan untuk mempersiapkan data sebelum memasuki proses analisis. Kegiatan yang dilakukan meliputi pemilihan butir pertanyaan penelitian dan konversi tipe data seluruh item menjadi numerik agar dapat diolah menggunakan metode statistik.
+
+| Pengolahan Data | Hasil |
+|-----------------|-------|
+| Jumlah item penelitian | 12 butir pertanyaan |
+| Konversi tipe data | Seluruh item berhasil dikonversi menjadi `numeric` |
+| Rentang skala jawaban | 1–4 (Skala Likert) |
+| Status data | Data siap digunakan pada tahap penyiapan variabel penelitian |
+
+**Interpretasi**
+
+Hasil pengolahan data menunjukkan bahwa seluruh butir pertanyaan penelitian berhasil dipilih dan dikonversi ke dalam tipe data numerik. Konversi ini dilakukan agar setiap respons dapat diolah menggunakan berbagai analisis statistik, seperti perhitungan skor total, uji validitas, uji reliabilitas, analisis statistik deskriptif, pembobotan, dan analisis survei.
 
 ### 3. Hasil Penyiapan Variabel Penelitian
 
+Tahap penyiapan variabel penelitian dilakukan untuk membentuk variabel yang akan digunakan dalam proses analisis. Kegiatan yang dilakukan meliputi perhitungan skor total setiap responden serta penyesuaian tipe data pada variabel kategorik agar sesuai dengan kebutuhan analisis statistik.
+
+| Variabel | Hasil |
+|----------|-------|
+| Skor_Total | Berhasil dihitung dari penjumlahan 12 butir pertanyaan |
+| Angkatan | Berhasil diubah menjadi tipe `factor` |
+| Kelas | Berhasil diubah menjadi tipe `factor` |
+| Jenis Kelamin | Berhasil diubah menjadi tipe `factor` |
+| Status Variabel | Siap digunakan pada tahap analisis selanjutnya |
+
+**Interpretasi**
+
+Hasil penyiapan variabel penelitian menunjukkan bahwa variabel **Skor_Total** berhasil dibentuk sebagai penjumlahan skor dari 12 butir pertanyaan yang mengukur pemanfaatan media sosial sebagai sumber informasi akademik. Variabel **Angkatan**, **Kelas**, dan **Jenis Kelamin** juga telah dikonversi menjadi tipe **factor** sehingga sesuai untuk analisis data kategorik dan pembentukan desain survei pada metode **Two-Stage Cluster Sampling**. Seluruh variabel penelitian telah siap digunakan pada tahap data cleaning dan analisis berikutnya.
+
+### 4. Hasil Data Cleaning
+
+Tahap data cleaning dilakukan untuk memastikan bahwa data yang digunakan telah memenuhi kualitas yang diperlukan sebelum memasuki tahap analisis statistik. Pemeriksaan meliputi jumlah responden, keberadaan missing value, data duplikat, serta outlier menggunakan metode Interquartile Range (IQR).
+
+| Pemeriksaan | Hasil |
+|-------------|-------|
+| Jumlah Responden | 40 |
+| Missing Value | 0 |
+| Data Duplikat | 0 |
+| Outlier (Metode IQR) | 0 |
+| Status Data | Data siap dianalisis |
+
+**Interpretasi**
+
+Hasil data cleaning menunjukkan bahwa dataset terdiri atas **40 responden** dengan kualitas data yang baik. Pemeriksaan menunjukkan tidak terdapat **missing value**, **data duplikat**, maupun **outlier** berdasarkan metode **Interquartile Range (IQR)**. Seluruh data memenuhi kriteria kelayakan sehingga tidak diperlukan proses penghapusan maupun perbaikan data. Dengan demikian, dataset dinyatakan siap digunakan pada tahap uji validitas, uji reliabilitas, analisis statistik deskriptif, pembobotan Two-Stage Cluster Sampling, dan analisis survei.
+
+### 5. Hasil Uji Validitas
+
+Uji validitas dilakukan untuk mengetahui apakah setiap butir pertanyaan mampu mengukur konstruk penelitian dengan menggunakan korelasi Pearson antara skor item dan skor total.
+
+| Item | r hitung | p-value | Keputusan |
+|------|----------|---------|-----------|
+| P1 | 0.776 | < 0.001 | Valid |
+| P2 | 0.537 | 0.0003 | Valid |
+| P3 | 0.667 | < 0.001 | Valid |
+| P4 | 0.570 | 0.0001 | Valid |
+| P5 | 0.472 | 0.0021 | Valid |
+| P6 | 0.611 | < 0.001 | Valid |
+| P7 | 0.713 | < 0.001 | Valid |
+| P8 | 0.705 | < 0.001 | Valid |
+| P9 | 0.746 | < 0.001 | Valid |
+| P10 | 0.725 | < 0.001 | Valid |
+| P11 | 0.718 | < 0.001 | Valid |
+| P12 | 0.701 | < 0.001 | Valid |
+
+**Interpretasi**
+
+Hasil uji validitas menunjukkan bahwa seluruh butir pertanyaan (P1–P12) memiliki nilai korelasi positif dengan skor total. Nilai r hitung berada pada rentang 0.472 hingga 0.776 dengan seluruh p-value < 0.05. Hal ini menunjukkan bahwa setiap item mampu mengukur konstruk penelitian secara konsisten sehingga seluruh instrumen dinyatakan valid dan layak digunakan untuk analisis lanjutan.
+
+### 6. Hasil Uji Reliabilitas
+
+Uji reliabilitas dilakukan untuk mengetahui tingkat konsistensi internal instrumen penelitian menggunakan koefisien Cronbach’s Alpha.
+
+| Indikator | Nilai |
+|-----------|-------|
+| Cronbach’s Alpha | 0.883 |
+| Kriteria | ≥ 0.70 |
+| Keputusan | Reliabel |
+
+**Interpretasi**
+
+Hasil uji reliabilitas menunjukkan bahwa nilai Cronbach’s Alpha sebesar 0.883. Nilai tersebut lebih besar dari batas minimum 0.70 sehingga instrumen penelitian dinyatakan memiliki konsistensi internal yang baik. Dengan demikian, seluruh butir pertanyaan pada kuesioner dinyatakan reliabel dan layak digunakan untuk analisis lebih lanjut.
+
+### 7. Hasil Analisis Statistik Deskriptif
+
+Analisis statistik deskriptif dilakukan untuk memberikan gambaran umum mengenai distribusi skor pemanfaatan media sosial sebagai sumber informasi akademik pada responden penelitian.
+
+| Statistik | Nilai |
+|-----------|-------:|
+| Jumlah Responden | 40 |
+| Rata-rata (Mean) | 41.65 |
+| Median | 42.00 |
+| Simpangan Baku (Standard Deviation) | 4.24 |
+| Nilai Minimum | 33 |
+| Kuartil 1 (Q1) | 38 |
+| Kuartil 3 (Q3) | 45 |
+| Nilai Maksimum | 48 |
+| Rentang (Range) | 33–48 |
+
+**Interpretasi**
+
+Hasil analisis statistik deskriptif menunjukkan bahwa rata-rata skor pemanfaatan media sosial sebagai sumber informasi akademik sebesar **41.65** dengan nilai tengah (median) sebesar **42.00**. Nilai rata-rata yang hampir sama dengan median menunjukkan bahwa sebaran skor responden relatif seimbang dan tidak mengalami penyimpangan yang besar.
+
+Simpangan baku sebesar **4.24** menunjukkan bahwa variasi skor antarresponden tergolong relatif rendah sehingga sebagian besar responden memiliki tingkat pemanfaatan media sosial yang tidak jauh berbeda dari rata-ratanya. Skor terendah yang diperoleh responden adalah **33**, sedangkan skor tertinggi mencapai **48**, dengan rentang nilai antara **33–48**. Berdasarkan hasil tersebut, secara umum responden memiliki tingkat pemanfaatan media sosial yang cenderung tinggi sebagai sumber informasi akademik.
+
+### 8. Hasil Visualisasi Data
+
+Visualisasi data dilakukan untuk memberikan gambaran mengenai distribusi skor responden, karakteristik responden, serta hubungan antarbutir pertanyaan pada instrumen penelitian.
+
+#### Histogram Skor Total
+
+<p align="center">
+<img src="output_gambar/Histogram_Skor_Total.png" width="600">
+</p>
+
+**Interpretasi**
+
+Histogram menunjukkan bahwa distribusi skor total responden cenderung terkonsentrasi pada rentang **38–48**. Sebagian besar responden memiliki skor yang berada di sekitar nilai rata-rata, sehingga tidak terlihat adanya penyimpangan distribusi yang ekstrem.
+
+---
+
+#### Boxplot Skor Total
+
+<p align="center">
+<img src="output_gambar/Boxplot_Skor_Total.png" width="500">
+</p>
+
+**Interpretasi**
+
+Boxplot menunjukkan bahwa sebaran skor total relatif merata dan tidak terdapat pencilan (*outlier*). Hal ini sejalan dengan hasil data cleaning yang menunjukkan bahwa seluruh data memenuhi kriteria untuk dianalisis.
+
+---
+
+#### Diagram Batang Berdasarkan Angkatan
+
+<p align="center">
+<img src="output_gambar/Bar_Angkatan.png" width="500">
+</p>
+
+**Interpretasi**
+
+Diagram batang menunjukkan distribusi responden berdasarkan angkatan penelitian. Visualisasi ini memberikan gambaran mengenai komposisi responden yang berasal dari setiap angkatan pada sampel penelitian.
+
+---
+
+#### Diagram Batang Berdasarkan Jenis Kelamin
+
+<p align="center">
+<img src="output_gambar/Bar_Jenis_Kelamin.png" width="500">
+</p>
+
+**Interpretasi**
+
+Diagram batang memperlihatkan jumlah responden berdasarkan jenis kelamin. Visualisasi ini digunakan untuk menggambarkan karakteristik responden dalam penelitian.
+
+---
+
+#### Heatmap Korelasi Antar Item
+
+<p align="center">
+<img src="output_gambar/Heatmap_Korelasi_Item.png" width="650">
+</p>
+
+**Interpretasi**
+
+Heatmap menunjukkan korelasi antarbutir pertanyaan pada instrumen penelitian. Sebagian besar pasangan item memiliki korelasi positif dengan kekuatan sedang hingga kuat. Hal ini menunjukkan bahwa setiap butir pertanyaan memiliki hubungan yang searah dalam mengukur konstruk pemanfaatan media sosial sebagai sumber informasi akademik.
+
+### 9. Hasil Pembobotan Two-Stage Cluster Sampling
+
 ...
 
-### 4. Hasil Uji Validitas
-
-...
-
-### 5. Hasil Uji Reliabilitas
-
-...
-
-### 6. Hasil Analisis Statistik Deskriptif
-
-...
-
-### 7. Hasil Visualisasi Data
-
-...
-
-### 8. Hasil Pembobotan Two-Stage Cluster Sampling
-
-...
-
-### 9. Hasil Analisis Survei
+### 10. Hasil Analisis Survei
 
 Berisi:
 - Estimasi rata-rata
