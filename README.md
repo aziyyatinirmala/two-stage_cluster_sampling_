@@ -617,94 +617,138 @@ Visualisasi data dilakukan untuk memberikan gambaran mengenai distribusi skor re
 
 #### Histogram Skor Total
 
-<p align="center">
-<img src="output_gambar/Histogram_Skor_Total.png" width="600">
-</p>
+<img src="Histogram_Skor_Total.png" width="600">
 
 **Interpretasi**
 
-Histogram menunjukkan bahwa distribusi skor total responden cenderung terkonsentrasi pada rentang **38–48**. Sebagian besar responden memiliki skor yang berada di sekitar nilai rata-rata, sehingga tidak terlihat adanya penyimpangan distribusi yang ekstrem.
+Histogram menunjukkan bahwa skor total pemanfaatan media sosial sebagai sumber informasi akademik berada pada rentang 33 hingga 48. Sebagian besar responden memiliki skor pada kisaran 40–46, sehingga distribusi data cenderung terkonsentrasi pada nilai yang relatif tinggi. Sebaran data tidak menunjukkan pola ekstrem, sehingga mengindikasikan bahwa tingkat pemanfaatan media sosial sebagai sumber informasi akademik berada pada kategori cukup tinggi.
 
 ---
 
 #### Boxplot Skor Total
 
-<p align="center">
-<img src="output_gambar/Boxplot_Skor_Total.png" width="500">
-</p>
+<img src="Boxplot_Skor_Total.png" width="500">
 
 **Interpretasi**
 
-Boxplot menunjukkan bahwa sebaran skor total relatif merata dan tidak terdapat pencilan (*outlier*). Hal ini sejalan dengan hasil data cleaning yang menunjukkan bahwa seluruh data memenuhi kriteria untuk dianalisis.
+Boxplot menunjukkan median skor berada di sekitar nilai 42 dengan rentang interkuartil (IQR) sekitar 38 hingga 45. Tidak ditemukan nilai yang berada di luar whisker sehingga tidak terdapat indikasi outlier. Hal ini menunjukkan bahwa data relatif homogen dan layak digunakan untuk analisis lanjutan.
 
 ---
 
 #### Diagram Batang Berdasarkan Angkatan
 
-<p align="center">
-<img src="output_gambar/Bar_Angkatan.png" width="500">
-</p>
+<img src="Bar_Angkatan.png" width="500"
 
 **Interpretasi**
 
-Diagram batang menunjukkan distribusi responden berdasarkan angkatan penelitian. Visualisasi ini memberikan gambaran mengenai komposisi responden yang berasal dari setiap angkatan pada sampel penelitian.
+Diagram batang menunjukkan bahwa responden berasal dari dua angkatan, yaitu 2024 dan 2025. Jumlah responden angkatan 2025 sedikit lebih banyak dibandingkan 2024, sehingga distribusi sampel masih cukup seimbang dalam mewakili populasi penelitian.
 
 ---
 
 #### Diagram Batang Berdasarkan Jenis Kelamin
 
-<p align="center">
-<img src="output_gambar/Bar_Jenis_Kelamin.png" width="500">
-</p>
+<img src="Bar_Jenis_Kelamin.png" width="500">
 
 **Interpretasi**
 
-Diagram batang memperlihatkan jumlah responden berdasarkan jenis kelamin. Visualisasi ini digunakan untuk menggambarkan karakteristik responden dalam penelitian.
+Diagram batang menunjukkan bahwa responden didominasi oleh mahasiswa **perempuan**, yaitu sebanyak **36 orang (90%)**, sedangkan responden **laki-laki** berjumlah **4 orang (10%)**. Perbedaan proporsi tersebut menunjukkan bahwa karakteristik sampel penelitian lebih banyak berasal dari mahasiswa perempuan. Meskipun demikian, seluruh responden tetap digunakan dalam analisis sesuai dengan hasil pengambilan sampel menggunakan metode **Two-Stage Cluster Sampling**.
 
 ---
 
 #### Heatmap Korelasi Antar Item
 
-<p align="center">
-<img src="output_gambar/Heatmap_Korelasi_Item.png" width="650">
-</p>
+<img src="Heatmap_Korelasi_Item.png" width="650">
 
 **Interpretasi**
 
-Heatmap menunjukkan korelasi antarbutir pertanyaan pada instrumen penelitian. Sebagian besar pasangan item memiliki korelasi positif dengan kekuatan sedang hingga kuat. Hal ini menunjukkan bahwa setiap butir pertanyaan memiliki hubungan yang searah dalam mengukur konstruk pemanfaatan media sosial sebagai sumber informasi akademik.
+Heatmap menunjukkan bahwa semua pertanyaan saling berhubungan dan memiliki arah hubungan yang sama, yaitu positif. Artinya, jika nilai pada satu pertanyaan meningkat, maka pertanyaan lainnya juga cenderung ikut meningkat. Hubungan antar item berada pada tingkat rendah hingga sedang, sehingga setiap pertanyaan masih memberikan informasi yang berbeda tetapi tetap saling mendukung dalam mengukur pemanfaatan media sosial sebagai sumber informasi akademik.
 
 ### 9. Hasil Pembobotan Two-Stage Cluster Sampling
 
-...
+### Hasil
+
+| Komponen | Nilai |
+|----------|------|
+| Jumlah Klaster Populasi (M) | 6 |
+| Klaster Sampel (m) | 2 |
+| Jumlah Anggota Klaster Populasi (N) | 66 |
+| Sampel Responden (n) | 40 |
+| Responden Valid (nr) | 40 |
+| Peluang Tahap 1 (p1) | 0.3333 |
+| Peluang Tahap 2 (p2) | 0.6061 |
+| Peluang Total | 0.2020 |
+| Bobot Akhir (w_akhir) | 4.95 |
+
+### Interpretasi
+
+Hasil perhitungan menunjukkan bahwa setiap responden memiliki bobot sebesar **4,95**. Artinya, satu responden dalam penelitian ini mewakili sekitar 5 orang dalam populasi berdasarkan desain pengambilan sampel yang digunakan.
+
+Karena seluruh responden yang terpilih berhasil mengisi kuesioner tanpa ada data yang hilang, maka tidak dilakukan penyesuaian non-respon. Dengan demikian, bobot akhir sama dengan bobot dasar yang diperoleh dari peluang pemilihan sampel.
 
 ### 10. Hasil Analisis Survei
 
-Berisi:
-- Estimasi rata-rata
-- Standard Error (SE)
-- Confidence Interval (CI) 95%
-- Interpretasi hasil estimasi
+Analisis dilakukan menggunakan desain **survey berbobot (Two-Stage Cluster Sampling)** dengan mempertimbangkan struktur klaster dan bobot sampel.
+
+| Indikator | Nilai |
+|----------|------|
+| Estimasi Rata-rata | 41.65 |
+| Standard Error (SE) | 1.985 |
+| Confidence Interval 95% | 37.76 – 45.54 |
+| Design Effect (DEFF) | 10.987 |
+| Relative Standard Error (RSE) | 4.77% |
+
+---
+
+### Interpretasi
+
+Hasil analisis menunjukkan bahwa rata-rata pemanfaatan media sosial sebagai sumber informasi akademik adalah **41,65**.
+
+Nilai **Standard Error (1,985)** menunjukkan bahwa tingkat ketidakpastian estimasi masih dalam batas yang wajar, sehingga hasil rata-rata dapat dianggap cukup stabil.
+
+Interval kepercayaan 95% berada pada rentang **37,76 sampai 45,54**, yang berarti nilai rata-rata populasi diperkirakan berada di dalam rentang tersebut.
+
+Nilai **Design Effect (10,987)** menunjukkan bahwa varians data pada desain cluster sampling lebih besar dibandingkan dengan sampling acak sederhana, yang merupakan hal umum dalam desain survei berklaster.
+
+Nilai **Relative Standard Error (4,77%)** berada di bawah 5%, sehingga menunjukkan bahwa hasil estimasi memiliki tingkat presisi yang sangat baik.
+
+### Interpretasi Estimasi Rata-rata
+
+Berdasarkan hasil analisis kualitas estimasi, diperoleh nilai rata-rata pemanfaatan media sosial sebagai sumber informasi akademik sebesar 41,65 yang menunjukkan bahwa rata-rata skor pemanfaatan media sosial mahasiswa setelah memperhitungkan bobot sampling berada pada angka tersebut. Nilai Standard Error sebesar 1,985 mengindikasikan bahwa tingkat kesalahan estimasi relatif kecil sehingga rata-rata yang diperoleh cukup stabil. Confidence Interval 95% berada pada rentang 37,76 hingga 45,54, yang berarti rata-rata skor pemanfaatan media sosial mahasiswa pada populasi diperkirakan berada dalam interval tersebut dengan tingkat kepercayaan sebesar 95%. Nilai Design Effect (DEFF) sebesar 10,987 menunjukkan bahwa varians estimasi menggunakan metode Two-Stage Cluster Sampling lebih besar dibandingkan apabila menggunakan Simple Random Sampling. Hal ini merupakan konsekuensi dari penggunaan desain cluster sampling, di mana responden dalam satu klaster cenderung memiliki karakteristik yang lebih mirip. Selain itu, nilai Relative Standard Error (RSE) sebesar 4,77% berada di bawah batas 5%, sehingga menunjukkan bahwa hasil estimasi memiliki tingkat presisi yang sangat baik. Dengan demikian, hasil analisis yang diperoleh dapat dianggap cukup andal dan representatif dalam menggambarkan kondisi pemanfaatan media sosial sebagai sumber informasi akademik mahasiswa Program Studi Statistika Universitas Mataram.
 
 ---
 
 ## Kesimpulan
 
-...
+## Kesimpulan
+
+Hasil pengujian instrumen menunjukkan bahwa seluruh **12 butir pertanyaan dinyatakan valid** dengan nilai *p-value* kurang dari 0,05. Selain itu, nilai **Cronbach's Alpha sebesar 0,883** menunjukkan bahwa instrumen memiliki tingkat reliabilitas yang baik sehingga layak digunakan dalam penelitian. Proses *data cleaning* juga menunjukkan bahwa tidak terdapat *missing value*, data duplikat, maupun *outlier*, sehingga seluruh data responden dapat digunakan dalam proses analisis
+
+Berdasarkan hasil analisis menggunakan metode **Two-Stage Cluster Sampling**, dapat disimpulkan bahwa pemanfaatan media sosial sebagai sumber informasi akademik pada mahasiswa Program Studi Statistika Universitas Mataram tergolong tinggi. Hal ini ditunjukkan oleh estimasi rata-rata sebesar **41,65**, yang menggambarkan bahwa sebagian besar mahasiswa memanfaatkan media sosial untuk memperoleh materi pembelajaran, referensi belajar, serta informasi mengenai kegiatan akademik.
+
+Pembobotan berdasarkan desain **Two-Stage Cluster Sampling** menghasilkan bobot akhir sebesar **4,95** untuk setiap responden. Analisis survei menghasilkan **Standard Error sebesar 1,985**, **Confidence Interval 95% sebesar 37,76–45,54**, **Design Effect (DEFF) sebesar 10,987**, dan **Relative Standard Error (RSE) sebesar 4,77%**. Nilai RSE yang berada di bawah 5% menunjukkan bahwa hasil estimasi memiliki tingkat presisi yang sangat baik, sehingga hasil penelitian dapat dianggap andal dan representatif dalam menggambarkan pemanfaatan media sosial sebagai sumber informasi akademik pada mahasiswa Program Studi Statistika Universitas Mataram.
 
 ---
 
 ## Rekomendasi
 
-...
+Berdasarkan hasil penelitian, terdapat beberapa rekomendasi yang dapat diberikan sebagai berikut.
 
----
+1. Program Studi Statistika Universitas Mataram diharapkan dapat memanfaatkan media sosial sebagai salah satu sarana penyebaran informasi akademik, seperti informasi perkuliahan, seminar, webinar, kompetisi, beasiswa, dan kegiatan akademik lainnya, mengingat sebagian besar mahasiswa telah memanfaatkan media sosial sebagai sumber informasi akademik.
 
-## Referensi
+2. Mahasiswa diharapkan tetap bersikap kritis dalam menggunakan media sosial dengan melakukan verifikasi terhadap informasi akademik yang diperoleh, sehingga informasi yang digunakan benar, akurat, dan berasal dari sumber yang terpercaya.
 
-...
+3. Penelitian selanjutnya disarankan menggunakan cakupan populasi yang lebih luas, misalnya melibatkan seluruh mahasiswa Universitas Mataram atau perguruan tinggi lainnya, sehingga hasil penelitian dapat digeneralisasikan dengan lebih baik.
+
+4. Penelitian berikutnya juga dapat menambahkan variabel lain yang berkaitan dengan pemanfaatan media sosial, seperti efektivitas pembelajaran, prestasi akademik, motivasi belajar, atau literasi digital, sehingga diperoleh gambaran yang lebih komprehensif mengenai pemanfaatan media sosial dalam bidang pendidikan.
 
 ---
 
 ## Link Kuesioner
 
-🔗 https://...
+Kuesioner yang digunakan dalam penelitian ini disebarkan secara daring menggunakan **Google Forms**. Instrumen penelitian terdiri atas 12 butir pernyataan mengenai pemanfaatan media sosial sebagai sumber informasi akademik yang diukur menggunakan skala Likert 1–4.
+
+Kuesioner dapat diakses melalui tautan berikut:
+
+🔗 **https://forms.gle/HWDkBhVfMQChx2Li7**
+
+
